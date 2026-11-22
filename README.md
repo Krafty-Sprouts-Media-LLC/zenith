@@ -1,10 +1,8 @@
 # Zenith
 
-**Version:** 0.2.1
+**Version:** 0.3.0
 
 A simple list-shaped theme for [Teme CMS](https://github.com/temecms/teme).
-
-**0.2.0** adds the layout shell and stylesheet. The list feed / article skin from the HTML prototypes lands next — see [Roadmap](#roadmap).
 
 ## Requirements
 
@@ -15,8 +13,9 @@ A simple list-shaped theme for [Teme CMS](https://github.com/temecms/teme).
 
 | Template | Draws |
 |---|---|
-| `index` | Floor inside the site shell (tagline on the home page) |
+| `latest` | Home / posts: lead, then a vertical list of stories |
 | `single` | Title, standfirst, body inside the site shell |
+| `index` | Floor fallback |
 
 Menus: `primary` (Header), `footer` (Footer). Stylesheet: `assets/css/theme.css` → `public/build`.
 
@@ -60,7 +59,7 @@ php artisan teme:themes:link
 One vertical slice at a time:
 
 1. ~~Layout shell + stylesheet~~ (0.2.0)
-2. `latest` (home) — list feed from `zenith-home.html`
+2. ~~`latest` list feed~~ (0.3.0)
 3. `single` article layout from `zenith-article.html`
 4. `archive` / `author` / `search` / `notfound`
 5. Page templates (including Subscribe) and regions

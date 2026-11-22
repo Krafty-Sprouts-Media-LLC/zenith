@@ -1,0 +1,647 @@
+/*
+ * Zenith — simple list-shaped theme stylesheet.
+ *
+ * Lives in @layer teme.theme (after core's teme.core). Tokens come from the
+ * manifest (--teme-*); this file only adds layout and list chrome.
+ *
+ * @package kraftysprouts/zenith
+ * @since   0.2.0
+ * @license MIT
+ */
+
+@layer teme.theme {
+    :root {
+        --zenith-wide: 80rem;
+        --zenith-gutter: 1.25rem;
+        --zenith-radius: 0.75rem;
+        --zenith-radius-lg: 1rem;
+        --zenith-shadow: 0 1px 2px color-mix(in oklab, var(--teme-contrast) 6%, transparent);
+        color-scheme: light;
+    }
+
+    :root[data-scheme='dark'] {
+        color-scheme: dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root[data-scheme='auto'] {
+            color-scheme: dark;
+        }
+    }
+
+    body {
+        margin: 0;
+        background: var(--teme-base);
+    }
+
+    .site {
+        min-block-size: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: var(--teme-base);
+        color: var(--teme-contrast);
+        font: 400 1.0625rem / 1.65 var(--teme-font-body);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .site *,
+    .site *::before,
+    .site *::after {
+        box-sizing: border-box;
+    }
+
+    .site :where(h1, h2, h3, p, ul, ol, figure) {
+        margin: 0;
+    }
+
+    .site :where(nav ul, nav ol) {
+        padding: 0;
+        list-style: none;
+    }
+
+    .site a {
+        color: var(--teme-accent);
+        text-decoration-thickness: from-font;
+        text-underline-offset: 0.15em;
+    }
+
+    .site :focus-visible {
+        outline: 3px solid var(--teme-accent);
+        outline-offset: 2px;
+    }
+
+    .site :where(h1, h2, h3) {
+        font-family: var(--teme-font-heading);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--teme-contrast);
+    }
+
+    .site h1 {
+        font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+    }
+
+    .site h2 {
+        font-size: clamp(1.35rem, 1.2rem + 0.8vw, 1.75rem);
+    }
+
+    .wrap {
+        width: min(100% - (2 * var(--zenith-gutter)), var(--zenith-wide));
+        margin-inline: auto;
+    }
+
+    /* —— Header —— */
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: color-mix(in oklab, var(--teme-base) 92%, transparent);
+        border-block-end: 1px solid var(--teme-rule);
+        backdrop-filter: blur(8px);
+    }
+
+    .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-block-size: 5rem;
+    }
+
+    .site-title {
+        font-family: var(--teme-font-heading);
+        font-weight: 900;
+        font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+        letter-spacing: -0.03em;
+        margin: 0;
+    }
+
+    .site-title a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--teme-contrast);
+        text-decoration: none;
+    }
+
+    .site-mark {
+        inline-size: 2rem;
+        block-size: 2rem;
+        border-radius: var(--zenith-radius);
+        background: linear-gradient(135deg, #6366f1, #a855f7);
+        flex-shrink: 0;
+    }
+
+    .nav-wide {
+        display: none;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .nav-wide nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .nav-wide nav a {
+        font-family: var(--teme-font-heading);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: var(--teme-muted);
+        text-decoration: none;
+    }
+
+    .nav-wide nav a:hover,
+    .nav-wide nav a[aria-current='page'] {
+        color: var(--teme-accent);
+    }
+
+    .header-tools {
+        display: none;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .header-tools .search {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .header-tools .search input {
+        inline-size: 10rem;
+        padding: 0.4rem 0.65rem;
+        border: 1px solid var(--teme-rule);
+        border-radius: 999px;
+        background: var(--teme-base);
+        color: var(--teme-contrast);
+        font: inherit;
+        font-size: 0.875rem;
+    }
+
+    .nav-narrow {
+        display: block;
+    }
+
+    .nav-narrow summary {
+        list-style: none;
+        cursor: pointer;
+        font-family: var(--teme-font-heading);
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: var(--teme-contrast);
+    }
+
+    .nav-narrow summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .nav-narrow-body {
+        position: absolute;
+        inset-inline: 0;
+        background: var(--teme-base);
+        border-block-end: 1px solid var(--teme-rule);
+        padding: 0.75rem var(--zenith-gutter) 1.25rem;
+        box-shadow: var(--zenith-shadow);
+    }
+
+    .nav-narrow-body nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .nav-narrow-body nav a {
+        display: block;
+        padding: 0.75rem 0.5rem;
+        font-family: var(--teme-font-heading);
+        font-weight: 600;
+        color: var(--teme-contrast);
+        text-decoration: none;
+        border-block-end: 1px solid var(--teme-rule);
+    }
+
+    .nav-narrow-body .search {
+        margin-block-start: 1rem;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .nav-narrow-body .search input {
+        flex: 1;
+        padding: 0.65rem 0.85rem;
+        border: 1px solid var(--teme-rule);
+        border-radius: var(--zenith-radius);
+        font: inherit;
+        background: var(--teme-base);
+        color: var(--teme-contrast);
+    }
+
+    @media (min-width: 48rem) {
+        .nav-wide,
+        .header-tools {
+            display: flex;
+        }
+
+        .nav-narrow {
+            display: none;
+        }
+
+        .site-mark {
+            inline-size: 2.5rem;
+            block-size: 2.5rem;
+        }
+    }
+
+    /* —— Main —— */
+    .site-main {
+        flex: 1;
+        padding-block: 2rem 3.5rem;
+    }
+
+    .site-main:focus {
+        outline: none;
+    }
+
+    .page-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-inline-size: 42rem;
+    }
+
+    .page-stack .standfirst {
+        font-size: 1.125rem;
+        color: var(--teme-muted);
+        line-height: 1.6;
+    }
+
+    .page-title {
+        margin-block-end: 1.5rem;
+    }
+
+    .empty {
+        color: var(--teme-muted);
+        font-weight: 600;
+    }
+
+    /* —— List feed —— */
+    .feed-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+        max-inline-size: 48rem;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: relative;
+    }
+
+    .card.has-media {
+        gap: 1.25rem;
+    }
+
+    .card-media {
+        overflow: hidden;
+        border-radius: var(--zenith-radius-lg);
+        background: color-mix(in oklab, var(--teme-contrast) 6%, var(--teme-base));
+        aspect-ratio: 16 / 10;
+    }
+
+    .card-media img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-inline-size: 0;
+    }
+
+    .kicker {
+        margin: 0;
+    }
+
+    .kicker a {
+        display: inline-block;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--teme-accent) 12%, var(--teme-base));
+        color: var(--teme-accent);
+        font-family: var(--teme-font-heading);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    .card-title {
+        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+        margin: 0;
+    }
+
+    .card-title a {
+        color: var(--teme-contrast);
+        text-decoration: none;
+    }
+
+    .card-title a::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+
+    .card:hover .card-title a {
+        color: var(--teme-accent);
+    }
+
+    .card .standfirst {
+        font-size: 0.975rem;
+        color: var(--teme-muted);
+        line-height: 1.55;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card .meta {
+        margin: 0;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: color-mix(in oklab, var(--teme-muted) 90%, var(--teme-contrast));
+    }
+
+    .card .meta a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .card.lead .card-title {
+        font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem);
+    }
+
+    .card.lead .standfirst {
+        font-size: 1.0625rem;
+        -webkit-line-clamp: 3;
+    }
+
+    @media (min-width: 40rem) {
+        .card.has-media {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .card.has-media .card-media {
+            flex: 0 0 34%;
+            max-inline-size: 14rem;
+            aspect-ratio: 4 / 3;
+        }
+
+        .card.lead.has-media .card-media {
+            flex-basis: 42%;
+            max-inline-size: 20rem;
+        }
+
+        .card-text {
+            flex: 1;
+            padding-block: 0.15rem;
+        }
+    }
+
+    .pagination {
+        margin-block-start: 2.5rem;
+    }
+
+    .pagination ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .pagination a,
+    .pagination span[aria-current='page'] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-inline-size: 2.25rem;
+        padding: 0.4rem 0.7rem;
+        border-radius: 999px;
+        font-family: var(--teme-font-heading);
+        font-weight: 700;
+        font-size: 0.875rem;
+        text-decoration: none;
+    }
+
+    .pagination a {
+        color: var(--teme-muted);
+        background: color-mix(in oklab, var(--teme-contrast) 4%, var(--teme-base));
+    }
+
+    .pagination a:hover {
+        color: var(--teme-accent);
+    }
+
+    .pagination span[aria-current='page'] {
+        background: var(--teme-contrast);
+        color: var(--teme-base);
+    }
+
+    .pagination .gap {
+        color: var(--teme-muted);
+    }
+
+    .prose {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: color-mix(in oklab, var(--teme-contrast) 85%, var(--teme-base));
+    }
+
+    .prose :where(p, ul, ol, blockquote, h2, h3, table, .tableWrapper) {
+        margin-block: 0 1.5rem;
+    }
+
+    .prose :where(h2, h3) {
+        margin-block-start: 2.5rem;
+        color: var(--teme-contrast);
+    }
+
+    .prose :where(ul, ol) {
+        padding-inline-start: 1.5em;
+    }
+
+    .prose ul {
+        list-style: disc;
+    }
+
+    .prose ol {
+        list-style: decimal;
+    }
+
+    .prose a {
+        font-weight: 600;
+    }
+
+    /* Body tables (cost breakdowns, comparisons): readable grid, scroll on small screens. */
+    .prose .tableWrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .prose table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-family: var(--teme-font-heading);
+        font-size: 0.9375rem;
+        line-height: 1.5;
+    }
+
+    .prose th,
+    .prose td {
+        border: 1px solid color-mix(in oklab, var(--teme-contrast) 18%, var(--teme-base));
+        padding: 0.55em 0.75em;
+        vertical-align: top;
+        text-align: start;
+    }
+
+    .prose th {
+        background: color-mix(in oklab, var(--teme-contrast) 6%, var(--teme-base));
+        font-weight: 700;
+        color: var(--teme-contrast);
+    }
+
+    .prose td {
+        font-family: var(--teme-font-body);
+        font-weight: 600;
+        color: color-mix(in oklab, var(--teme-contrast) 85%, var(--teme-base));
+    }
+
+    .prose :where(th, td) > :last-child {
+        margin-block-end: 0;
+    }
+
+    .sr-only {
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 1.1rem;
+        border: 0;
+        border-radius: 999px;
+        background: var(--teme-contrast);
+        color: var(--teme-base);
+        font-family: var(--teme-font-heading);
+        font-weight: 700;
+        font-size: 0.875rem;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background: var(--teme-accent);
+        color: var(--teme-on-accent);
+    }
+
+    .button.quiet {
+        background: transparent;
+        color: var(--teme-muted);
+        padding-inline: 0.5rem;
+    }
+
+    /* —— Footer —— */
+    .site-footer {
+        margin-block-start: auto;
+        padding-block: 2.5rem;
+        background: #0f172a;
+        color: #cbd5e1;
+        border-block-start: 1px solid #1e293b;
+    }
+
+    .footer-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        align-items: flex-start;
+    }
+
+    .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--teme-font-heading);
+        font-weight: 900;
+        font-size: 1.25rem;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer-brand .site-mark {
+        inline-size: 1.5rem;
+        block-size: 1.5rem;
+        border-radius: 0.4rem;
+    }
+
+    .site-footer nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+    }
+
+    .site-footer nav a {
+        color: #94a3b8;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-decoration: none;
+    }
+
+    .site-footer nav a:hover {
+        color: #fff;
+    }
+
+    .copyright {
+        font-size: 0.875rem;
+        font-weight: 600;
+        opacity: 0.7;
+    }
+
+    @media (min-width: 48rem) {
+        .footer-inner {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .site *,
+        .site *::before,
+        .site *::after {
+            transition: none !important;
+        }
+    }
+}

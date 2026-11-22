@@ -5,6 +5,13 @@ All notable changes to this theme are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 22/11/2026
+
+### Added
+
+- `latest` template: simple list feed (lead, featured, then the rest) with thumb + title rows.
+- Partials: `card`, `kicker`, `byline`, `pagination`.
+
 ## [0.2.1] - 22/11/2026
 
 ### Fixed
