@@ -327,14 +327,14 @@
 
     .prose th,
     .prose td {
-        border: 1px solid var(--teme-rule);
+        border: 1px solid color-mix(in oklab, var(--teme-contrast) 18%, var(--teme-base));
         padding: 0.55em 0.75em;
         vertical-align: top;
         text-align: start;
     }
 
     .prose th {
-        background: color-mix(in oklab, var(--teme-contrast) 5%, var(--teme-base));
+        background: color-mix(in oklab, var(--teme-contrast) 6%, var(--teme-base));
         font-weight: 700;
         color: var(--teme-contrast);
     }

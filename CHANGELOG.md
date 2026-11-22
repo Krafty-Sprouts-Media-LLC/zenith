@@ -9,8 +9,9 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ### Fixed
 
-- Prose tables: borders, padding, header background, and horizontal scroll.
+- Prose tables: borders, padding, header background, and horizontal scroll (border uses a stronger contrast mix so cells are visible on white).
 - Prose lists: restore bullets/numbers (nav-only `list-style: none`).
+- Built CSS filename includes the version so browsers drop a stale `theme.css`.
 
 ## [0.2.0] - 22/11/2026
 
