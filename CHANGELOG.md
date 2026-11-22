@@ -5,6 +5,13 @@ All notable changes to this theme are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 22/11/2026
+
+### Fixed
+
+- Prose tables: borders, padding, header background, and horizontal scroll.
+- Prose lists: restore bullets/numbers (nav-only `list-style: none`).
+
 ## [0.2.0] - 22/11/2026
 
 ### Added

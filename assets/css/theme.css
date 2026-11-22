@@ -54,7 +54,7 @@
         margin: 0;
     }
 
-    .site :where(ul, ol) {
+    .site :where(nav ul, nav ol) {
         padding: 0;
         list-style: none;
     }
@@ -285,7 +285,7 @@
         color: color-mix(in oklab, var(--teme-contrast) 85%, var(--teme-base));
     }
 
-    .prose :where(p, ul, ol, blockquote, h2, h3) {
+    .prose :where(p, ul, ol, blockquote, h2, h3, table, .tableWrapper) {
         margin-block: 0 1.5rem;
     }
 
@@ -294,8 +294,59 @@
         color: var(--teme-contrast);
     }
 
+    .prose :where(ul, ol) {
+        padding-inline-start: 1.5em;
+    }
+
+    .prose ul {
+        list-style: disc;
+    }
+
+    .prose ol {
+        list-style: decimal;
+    }
+
     .prose a {
         font-weight: 600;
+    }
+
+    /* Body tables (cost breakdowns, comparisons): readable grid, scroll on small screens. */
+    .prose .tableWrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .prose table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-family: var(--teme-font-heading);
+        font-size: 0.9375rem;
+        line-height: 1.5;
+    }
+
+    .prose th,
+    .prose td {
+        border: 1px solid var(--teme-rule);
+        padding: 0.55em 0.75em;
+        vertical-align: top;
+        text-align: start;
+    }
+
+    .prose th {
+        background: color-mix(in oklab, var(--teme-contrast) 5%, var(--teme-base));
+        font-weight: 700;
+        color: var(--teme-contrast);
+    }
+
+    .prose td {
+        font-family: var(--teme-font-body);
+        font-weight: 600;
+        color: color-mix(in oklab, var(--teme-contrast) 85%, var(--teme-base));
+    }
+
+    .prose :where(th, td) > :last-child {
+        margin-block-end: 0;
     }
 
     .sr-only {

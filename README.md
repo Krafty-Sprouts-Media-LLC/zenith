@@ -1,6 +1,6 @@
 # Zenith
 
-**Version:** 0.2.0
+**Version:** 0.2.1
 
 A simple list-shaped theme for [Teme CMS](https://github.com/temecms/teme).
 
