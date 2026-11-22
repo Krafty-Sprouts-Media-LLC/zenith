@@ -2,8 +2,8 @@
     "manifest": 1,
     "code": "zenith",
     "name": "Zenith",
-    "version": "0.1.0",
-    "description": "A simple list-shaped theme for Teme (foundation; full skin in later releases).",
+    "version": "0.2.0",
+    "description": "A simple list-shaped theme for Teme (layout shell; full list skin in later releases).",
     "author": "Krafty Sprouts Media LLC",
     "author_url": "https://kraftysprouts.com",
     "homepage": "https://github.com/Krafty-Sprouts-Media-LLC/zenith",
@@ -46,7 +46,12 @@
         "on-accent": "#0f172a"
     },
     "navigations": {
-        "primary": "Header"
+        "primary": "Header",
+        "footer": "Footer"
+    },
+    "assets": {
+        "manifest": "public/build/manifest.json",
+        "entries": ["assets/css/theme.css"]
     },
     "composers": [],
     "speculation": true

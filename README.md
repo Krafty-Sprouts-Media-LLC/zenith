@@ -1,24 +1,24 @@
 # Zenith
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 
 A simple list-shaped theme for [Teme CMS](https://github.com/temecms/teme).
 
-This release is the **foundation only**: package metadata, docs, design tokens, and floor Blade templates. The full Zenith look (from the HTML skins) lands in later versions — see [Roadmap](#roadmap).
+**0.2.0** adds the layout shell and stylesheet. The list feed / article skin from the HTML prototypes lands next — see [Roadmap](#roadmap).
 
 ## Requirements
 
 - Teme `>=1.3.2 <2.0`
 - PHP 8.4+
 
-## What 0.1.0 draws
+## What it draws now
 
 | Template | Draws |
 |---|---|
-| `index` | Floor: site name as `<h1>` (home and anything without a more specific template) |
-| `single` | An item’s title as `<h1>` |
+| `index` | Floor inside the site shell (tagline on the home page) |
+| `single` | Title, standfirst, body inside the site shell |
 
-Menus: `primary` (Header). No theme settings, regions, or built assets yet.
+Menus: `primary` (Header), `footer` (Footer). Stylesheet: `assets/css/theme.css` → `public/build`.
 
 ## Install on a Teme site
 
@@ -42,20 +42,25 @@ Then activate under **Themes**.
 teme-theme.json     Manifest (version lives here)
 composer.json       type: teme-theme → kraftysprouts/zenith
 AGENTS.md           Rules for coding agents in this package
-CLAUDE.md           Pointer to AGENTS.md
-README.md           This file
-CHANGELOG.md        Version history
-LICENSE             MIT
-SOURCE.md           Where the HTML prototypes live (reference only)
-views/templates/    Blade templates
+assets/css/         Source stylesheet
+public/build/       Committed build (ThemeVite)
+views/layouts/      Page shell
+views/partials/     Header, footer, search
+views/templates/    Page templates
+```
+
+After CSS edits, copy `assets/css/theme.css` into `public/build/assets/theme.css` (or run a Vite build when that is wired).
+
+```bash
+php artisan teme:themes:link
 ```
 
 ## Roadmap
 
-Planned after 0.1.0 (one vertical slice at a time):
+One vertical slice at a time:
 
-1. Layout shell + stylesheet (`@layer teme.theme`) from the Zenith tokens
-2. `latest` (home) from `zenith-home.html`
+1. ~~Layout shell + stylesheet~~ (0.2.0)
+2. `latest` (home) — list feed from `zenith-home.html`
 3. `single` article layout from `zenith-article.html`
 4. `archive` / `author` / `search` / `notfound`
 5. Page templates (including Subscribe) and regions

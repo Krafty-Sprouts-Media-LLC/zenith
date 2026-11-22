@@ -1,0 +1,411 @@
+/*
+ * Zenith — simple list-shaped theme stylesheet.
+ *
+ * Lives in @layer teme.theme (after core's teme.core). Tokens come from the
+ * manifest (--teme-*); this file only adds layout and list chrome.
+ *
+ * @package kraftysprouts/zenith
+ * @since   0.2.0
+ * @license MIT
+ */
+
+@layer teme.theme {
+    :root {
+        --zenith-wide: 80rem;
+        --zenith-gutter: 1.25rem;
+        --zenith-radius: 0.75rem;
+        --zenith-radius-lg: 1rem;
+        --zenith-shadow: 0 1px 2px color-mix(in oklab, var(--teme-contrast) 6%, transparent);
+        color-scheme: light;
+    }
+
+    :root[data-scheme='dark'] {
+        color-scheme: dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root[data-scheme='auto'] {
+            color-scheme: dark;
+        }
+    }
+
+    body {
+        margin: 0;
+        background: var(--teme-base);
+    }
+
+    .site {
+        min-block-size: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: var(--teme-base);
+        color: var(--teme-contrast);
+        font: 400 1.0625rem / 1.65 var(--teme-font-body);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .site *,
+    .site *::before,
+    .site *::after {
+        box-sizing: border-box;
+    }
+
+    .site :where(h1, h2, h3, p, ul, ol, figure) {
+        margin: 0;
+    }
+
+    .site :where(ul, ol) {
+        padding: 0;
+        list-style: none;
+    }
+
+    .site a {
+        color: var(--teme-accent);
+        text-decoration-thickness: from-font;
+        text-underline-offset: 0.15em;
+    }
+
+    .site :focus-visible {
+        outline: 3px solid var(--teme-accent);
+        outline-offset: 2px;
+    }
+
+    .site :where(h1, h2, h3) {
+        font-family: var(--teme-font-heading);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--teme-contrast);
+    }
+
+    .site h1 {
+        font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+    }
+
+    .site h2 {
+        font-size: clamp(1.35rem, 1.2rem + 0.8vw, 1.75rem);
+    }
+
+    .wrap {
+        width: min(100% - (2 * var(--zenith-gutter)), var(--zenith-wide));
+        margin-inline: auto;
+    }
+
+    /* —— Header —— */
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: color-mix(in oklab, var(--teme-base) 92%, transparent);
+        border-block-end: 1px solid var(--teme-rule);
+        backdrop-filter: blur(8px);
+    }
+
+    .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-block-size: 5rem;
+    }
+
+    .site-title {
+        font-family: var(--teme-font-heading);
+        font-weight: 900;
+        font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+        letter-spacing: -0.03em;
+        margin: 0;
+    }
+
+    .site-title a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--teme-contrast);
+        text-decoration: none;
+    }
+
+    .site-mark {
+        inline-size: 2rem;
+        block-size: 2rem;
+        border-radius: var(--zenith-radius);
+        background: linear-gradient(135deg, #6366f1, #a855f7);
+        flex-shrink: 0;
+    }
+
+    .nav-wide {
+        display: none;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .nav-wide nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .nav-wide nav a {
+        font-family: var(--teme-font-heading);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: var(--teme-muted);
+        text-decoration: none;
+    }
+
+    .nav-wide nav a:hover,
+    .nav-wide nav a[aria-current='page'] {
+        color: var(--teme-accent);
+    }
+
+    .header-tools {
+        display: none;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .header-tools .search {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .header-tools .search input {
+        inline-size: 10rem;
+        padding: 0.4rem 0.65rem;
+        border: 1px solid var(--teme-rule);
+        border-radius: 999px;
+        background: var(--teme-base);
+        color: var(--teme-contrast);
+        font: inherit;
+        font-size: 0.875rem;
+    }
+
+    .nav-narrow {
+        display: block;
+    }
+
+    .nav-narrow summary {
+        list-style: none;
+        cursor: pointer;
+        font-family: var(--teme-font-heading);
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: var(--teme-contrast);
+    }
+
+    .nav-narrow summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .nav-narrow-body {
+        position: absolute;
+        inset-inline: 0;
+        background: var(--teme-base);
+        border-block-end: 1px solid var(--teme-rule);
+        padding: 0.75rem var(--zenith-gutter) 1.25rem;
+        box-shadow: var(--zenith-shadow);
+    }
+
+    .nav-narrow-body nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .nav-narrow-body nav a {
+        display: block;
+        padding: 0.75rem 0.5rem;
+        font-family: var(--teme-font-heading);
+        font-weight: 600;
+        color: var(--teme-contrast);
+        text-decoration: none;
+        border-block-end: 1px solid var(--teme-rule);
+    }
+
+    .nav-narrow-body .search {
+        margin-block-start: 1rem;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .nav-narrow-body .search input {
+        flex: 1;
+        padding: 0.65rem 0.85rem;
+        border: 1px solid var(--teme-rule);
+        border-radius: var(--zenith-radius);
+        font: inherit;
+        background: var(--teme-base);
+        color: var(--teme-contrast);
+    }
+
+    @media (min-width: 48rem) {
+        .nav-wide,
+        .header-tools {
+            display: flex;
+        }
+
+        .nav-narrow {
+            display: none;
+        }
+
+        .site-mark {
+            inline-size: 2.5rem;
+            block-size: 2.5rem;
+        }
+    }
+
+    /* —— Main —— */
+    .site-main {
+        flex: 1;
+        padding-block: 2rem 3.5rem;
+    }
+
+    .site-main:focus {
+        outline: none;
+    }
+
+    .page-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-inline-size: 42rem;
+    }
+
+    .page-stack .standfirst {
+        font-size: 1.125rem;
+        color: var(--teme-muted);
+        line-height: 1.6;
+    }
+
+    .prose {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: color-mix(in oklab, var(--teme-contrast) 85%, var(--teme-base));
+    }
+
+    .prose :where(p, ul, ol, blockquote, h2, h3) {
+        margin-block: 0 1.5rem;
+    }
+
+    .prose :where(h2, h3) {
+        margin-block-start: 2.5rem;
+        color: var(--teme-contrast);
+    }
+
+    .prose a {
+        font-weight: 600;
+    }
+
+    .sr-only {
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 1.1rem;
+        border: 0;
+        border-radius: 999px;
+        background: var(--teme-contrast);
+        color: var(--teme-base);
+        font-family: var(--teme-font-heading);
+        font-weight: 700;
+        font-size: 0.875rem;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background: var(--teme-accent);
+        color: var(--teme-on-accent);
+    }
+
+    .button.quiet {
+        background: transparent;
+        color: var(--teme-muted);
+        padding-inline: 0.5rem;
+    }
+
+    /* —— Footer —— */
+    .site-footer {
+        margin-block-start: auto;
+        padding-block: 2.5rem;
+        background: #0f172a;
+        color: #cbd5e1;
+        border-block-start: 1px solid #1e293b;
+    }
+
+    .footer-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        align-items: flex-start;
+    }
+
+    .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--teme-font-heading);
+        font-weight: 900;
+        font-size: 1.25rem;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer-brand .site-mark {
+        inline-size: 1.5rem;
+        block-size: 1.5rem;
+        border-radius: 0.4rem;
+    }
+
+    .site-footer nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+    }
+
+    .site-footer nav a {
+        color: #94a3b8;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-decoration: none;
+    }
+
+    .site-footer nav a:hover {
+        color: #fff;
+    }
+
+    .copyright {
+        font-size: 0.875rem;
+        font-weight: 600;
+        opacity: 0.7;
+    }
+
+    @media (min-width: 48rem) {
+        .footer-inner {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .site *,
+        .site *::before,
+        .site *::after {
+            transition: none !important;
+        }
+    }
+}

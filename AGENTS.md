@@ -4,7 +4,9 @@ Standalone Teme theme package (`kraftysprouts/zenith`, code `zenith`). Parent wo
 
 ## What this package is
 
-Simple list-shaped theme for Teme. **0.1.0 is foundation only**. Do not port the full skin in one go; follow the README roadmap, one slice per change, bump `version` + `CHANGELOG.md` each time.
+Simple list-shaped theme for Teme. **0.2.0** has the layout shell + CSS; list feed / article skin still to come. Follow the README roadmap, one slice per change, bump `version` + `CHANGELOG.md` each time.
+
+After editing `assets/css/theme.css`, refresh `public/build/assets/theme.css` (same file until Vite is wired).
 
 HTML prototypes (read-only reference, not shipped):
 
