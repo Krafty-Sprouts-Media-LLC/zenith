@@ -1,0 +1,19 @@
+# Local / OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node (when the CSS build slice lands)
+node_modules/
+public/hot
+
+# PHP tooling (if added later)
+.phpunit.result.cache
+.phpstan.cache
+vendor/
