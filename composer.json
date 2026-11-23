@@ -1,11 +1,11 @@
 {
-    "name": "kraftysprouts/zenith",
+    "name": "krafty-sprouts/zenith",
     "description": "Zenith — a simple list-shaped theme for Teme CMS",
     "type": "teme-theme",
     "license": "MIT",
     "authors": [
         {
-            "name": "Krafty Sprouts Media LLC",
+            "name": "Krafty Sprouts Media, LLC",
             "homepage": "https://kraftysprouts.com"
         }
     ],

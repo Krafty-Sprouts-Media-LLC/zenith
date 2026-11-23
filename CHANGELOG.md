@@ -5,6 +5,12 @@ All notable changes to this theme are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 23/11/2026
+
+### Changed
+
+- Composer package renamed to `krafty-sprouts/zenith` (same vendor as the other Krafty Sprouts packages).
+
 ## [0.3.0] - 22/11/2026
 
 ### Added

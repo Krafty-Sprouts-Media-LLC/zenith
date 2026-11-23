@@ -1,6 +1,6 @@
 # Zenith — agent notes
 
-Standalone Teme theme package (`kraftysprouts/zenith`, code `zenith`). Parent workshop rules: `../../AGENTS.md`.
+Standalone Teme theme package (`krafty-sprouts/zenith`, code `zenith`). Parent workshop rules: `../../AGENTS.md`.
 
 ## What this package is
 
@@ -30,7 +30,7 @@ HTML prototypes (read-only reference, not shipped):
 4. **Version every change** that is not pure docs: bump `teme-theme.json` → `version`, add a `CHANGELOG.md` heading dated `dd/MM/yyyy`.
 5. **Git:** this directory is its own repository. Commit here; never from the parent Teme site. `workshop/` is excluded from Teme’s git.
 6. **`.env`:** ask the person to set `TEME_THEME_PATHS`; do not edit `balafama/.env`.
-7. **File headers:** every PHP file gets the package header (`@package kraftysprouts/zenith`, `@since`, `@license MIT`). Blade files open with a short `{{-- … --}}` purpose comment.
+7. **File headers:** every PHP file gets the package header (`@package krafty-sprouts/zenith`, `@since`, `@license MIT`). Blade files open with a short `{{-- … --}}` purpose comment.
 
 ## Check before calling a slice done
 

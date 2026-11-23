@@ -1,6 +1,6 @@
 # Zenith
 
-**Version:** 0.3.0
+**Version:** 0.3.1
 
 A simple list-shaped theme for [Teme CMS](https://github.com/temecms/teme).
 
@@ -39,7 +39,7 @@ Then activate under **Themes**.
 
 ```
 teme-theme.json     Manifest (version lives here)
-composer.json       type: teme-theme → kraftysprouts/zenith
+composer.json       type: teme-theme → krafty-sprouts/zenith
 AGENTS.md           Rules for coding agents in this package
 assets/css/         Source stylesheet
 public/build/       Committed build (ThemeVite)
